@@ -161,6 +161,23 @@ export default function Contact() {
                 </div>
                 <div>
                   <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-slate-300"
+                  >
+                    Phone
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    autoComplete="tel"
+                    required
+                    className="mt-1.5 block w-full rounded-lg border border-slate-700 bg-slate-900/80 px-4 py-2.5 text-sm text-white placeholder-slate-500 transition-colors focus:border-primary-500 focus:outline-none focus:ring-1 focus:ring-primary-500"
+                    placeholder="(555) 000-0000"
+                  />
+                </div>
+                <div>
+                  <label
                     htmlFor="message"
                     className="block text-sm font-medium text-slate-300"
                   >

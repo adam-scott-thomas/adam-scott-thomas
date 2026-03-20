@@ -264,7 +264,71 @@ export default function Home() {
             <p className="mx-auto mt-4 max-w-2xl text-center text-base text-slate-400 sm:text-lg">
               Systems built for trust, traceability, and real-world execution.
             </p>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Maelstrom Gate — Featured Block */}
+            <div className="mt-12 rounded-xl border-2 border-primary-500/40 bg-gradient-to-r from-slate-900/80 via-slate-900/60 to-slate-900/80 p-8 sm:p-10">
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary-400">
+                Runtime AI Governance
+              </p>
+              <h3 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
+                Maelstrom Gate
+              </h3>
+              <p className="mt-2 text-lg font-medium text-slate-300">
+                Runtime governance for tool-using AI agents.
+              </p>
+              <p className="mt-4 max-w-3xl text-base leading-relaxed text-slate-400">
+                Same model. Same task. Different threat level. Dangerous tools
+                disappear from the model&apos;s visible action surface under
+                elevated risk.
+              </p>
+              <p className="mt-4 text-sm text-slate-500">
+                Open source on GitHub. Live demo available. Paid pilots now
+                open.
+              </p>
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/projects/maelstrom"
+                  className="inline-flex items-center rounded-lg bg-primary-500 px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  View Project
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </Link>
+                <a
+                  href="https://ghostlogic.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-lg border border-primary-500/30 bg-primary-500/10 px-6 py-3 text-sm font-semibold text-primary-400 transition hover:border-primary-500/50 hover:bg-primary-500/20"
+                >
+                  Try Demo
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {projects.map((project) => (
                 <article
                   key={project.title}
@@ -425,6 +489,103 @@ export default function Home() {
                 </li>
               ))}
             </ul>
+          </div>
+        </section>
+
+        {/* Founder Post */}
+        <section className="border-b border-slate-800/60">
+          <div className="mx-auto max-w-4xl px-6 py-20 sm:py-28">
+            <div className="border-l-4 border-primary-500/60 pl-6 sm:pl-8">
+              <p className="text-xs font-semibold uppercase tracking-widest text-primary-400">
+                Founder Post
+              </p>
+              <h2 className="mt-3 text-xl font-bold text-white sm:text-2xl">
+                I open-sourced the enforcement primitive behind my live AI
+                governance demo
+              </h2>
+              <div className="mt-6 space-y-4 text-base leading-relaxed text-slate-400">
+                <p>
+                  Most AI safety still depends on the model refusing to do
+                  something dangerous. I think that&apos;s the wrong layer.
+                </p>
+                <p>
+                  Maelstrom Gate governs the model&apos;s available action
+                  surface itself. Under elevated risk, dangerous tools vanish
+                  from context before the model can select them. No refusal
+                  theater. No jailbreak argument. Just control upstream of
+                  action.
+                </p>
+                <p>
+                  The enforcement primitive is open source. The broader
+                  runtime and pilot work are live.
+                </p>
+              </div>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="https://ghostlogic.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-lg bg-primary-500 px-5 py-2.5 text-sm font-semibold text-white shadow-md transition hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  Try the Demo
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://github.com/adam-scott-thomas/maelstrom-gate"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-lg border border-slate-700 bg-slate-900/50 px-5 py-2.5 text-sm font-semibold text-slate-300 transition hover:border-slate-600 hover:bg-slate-800/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  View the Repo
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://ghostlogic.tech"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-lg border border-slate-700 bg-slate-900/50 px-5 py-2.5 text-sm font-semibold text-slate-300 transition hover:border-slate-600 hover:bg-slate-800/50 hover:text-white focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 focus:ring-offset-slate-950"
+                >
+                  Visit GhostLogic
+                  <svg
+                    className="ml-2 h-4 w-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 

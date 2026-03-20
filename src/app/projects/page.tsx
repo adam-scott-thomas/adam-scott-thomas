@@ -45,6 +45,20 @@ const breadcrumbJsonLd = {
 
 const projects = [
   {
+    title: "Maelstrom Gate",
+    subtitle: "Runtime AI Governance",
+    badge: "New",
+    description:
+      "Deterministic runtime control over tool visibility for AI agents. Under elevated risk, dangerous actions disappear from the model's action surface.",
+    capabilities: [
+      "Open source",
+      "Live demo",
+      "Paid pilots",
+    ],
+    href: "/projects/maelstrom",
+    githubHref: "https://github.com/adam-scott-thomas/maelstrom-gate",
+  },
+  {
     title: "GhostLogic",
     subtitle: "Forensic Infrastructure",
     description:
@@ -128,13 +142,24 @@ export default function ProjectsPage() {
           {projects.map((project) => (
             <article
               key={project.title}
-              className="rounded-xl border border-slate-800 bg-slate-900/50 p-8 sm:p-10"
+              className={`rounded-xl border bg-slate-900/50 p-8 sm:p-10 ${
+                project.badge
+                  ? "border-2 border-primary-500/40"
+                  : "border border-slate-800"
+              }`}
             >
               <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
                 <div className="flex-1">
-                  <p className="text-xs font-semibold uppercase tracking-widest text-primary-400">
-                    {project.subtitle}
-                  </p>
+                  <div className="flex items-center gap-3">
+                    <p className="text-xs font-semibold uppercase tracking-widest text-primary-400">
+                      {project.subtitle}
+                    </p>
+                    {project.badge && (
+                      <span className="rounded-full bg-primary-500 px-2.5 py-0.5 text-xs font-bold uppercase tracking-wide text-white">
+                        {project.badge}
+                      </span>
+                    )}
+                  </div>
                   <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
                     {project.title}
                   </h2>
@@ -160,17 +185,40 @@ export default function ProjectsPage() {
                   )}
                 </div>
 
-                {project.href && (
-                  <div className="shrink-0 sm:mt-8">
+                <div className="flex shrink-0 flex-col gap-3 sm:mt-8">
+                  {project.href && (
                     <Link
                       href={project.href}
                       className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-primary-500"
                     >
-                      Learn more
+                      View Project
                       <span aria-hidden="true">&rarr;</span>
                     </Link>
-                  </div>
-                )}
+                  )}
+                  {project.githubHref && (
+                    <a
+                      href={project.githubHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-5 py-2.5 text-sm font-medium text-slate-300 transition-colors hover:border-slate-500 hover:text-white"
+                    >
+                      GitHub
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                        />
+                      </svg>
+                    </a>
+                  )}
+                </div>
               </div>
             </article>
           ))}
