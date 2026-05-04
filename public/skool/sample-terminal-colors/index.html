@@ -56,11 +56,11 @@
     --codex-border: #2a3140;
     --codex-glow:   rgba(11,13,17,0.18);
 
-    /* Tool calls — neutral graphite, hueless on purpose */
-    --tool-bg:      #161a22;
-    --tool-border:  #2a3140;
-    --tool-fg:      #7d8794;
-    --tool-name:    #a8b3c4;
+    /* Tool calls — pure recess: dark gray on black, no color, no status hue */
+    --tool-bg:      #000000;
+    --tool-border:  #1a1a1a;
+    --tool-fg:      #5a626f;
+    --tool-name:    #5a626f;
 
     /* GROK — purple */
     --grok-bg:      #6D28D9;
@@ -379,10 +379,10 @@
     font-weight: 600;
     letter-spacing: 0.02em;
   }
-  .toolcall .arrow { color: #4d5666; padding: 0 6px; }
-  .toolcall .arg   { color: #98a2b3; }
-  .toolcall .ok    { color: #6ee7b7; }
-  .toolcall .err   { color: #fca5a5; }
+  .toolcall .arrow { color: var(--tool-fg); padding: 0 6px; opacity: 0.7; }
+  .toolcall .arg   { color: var(--tool-fg); }
+  .toolcall .ok    { color: var(--tool-fg); }
+  .toolcall .err   { color: var(--tool-fg); }
   .row.right .toolcall { margin: 4px 38px 0 0; }
 
   /* Avatar tinting reuses bubble vars */
@@ -473,7 +473,7 @@
           <li><b>GROK</b> — purple (#6D28D9), white text</li>
           <li><b>GEMINI</b> — pink (#DB2777), white text</li>
           <li><b>SYSTEM</b> — slate gray (#2B313C), light gray text, dashed</li>
-          <li><b>Tool calls</b> — graphite (#161A22), no hue; chrome around speech, never a voice</li>
+          <li><b>Tool calls</b> — dark gray (#5A626F) on black (#000), monochrome; chrome around speech, never a voice. Even ✓/✗ stay gray.</li>
         </ul>
       </div>
       <div>
@@ -768,11 +768,9 @@
           <div class="toolcall"><span class="name">Write</span><span class="arrow">→</span><span class="arg">src/merge.ts</span><span class="arrow">  </span><span class="ok">✓ 1.2 KB</span></div>
           <div class="toolcall"><span class="name">Bash</span><span class="arrow">→</span><span class="arg">npm test -- merge.test.ts</span><span class="arrow">  </span><span class="err">✗ 1 failed (TZ offset)</span></div>
           <div class="spec">
-            <span class="chip"><b>tool bg</b> #161A22</span>
-            <span class="chip"><b>tool fg</b> #7D8794</span>
-            <span class="chip"><b>name</b> #A8B3C4</span>
-            <span class="chip"><b>ok</b> #6EE7B7</span>
-            <span class="chip"><b>err</b> #FCA5A5</span>
+            <span class="chip"><b>tool bg</b> #000000</span>
+            <span class="chip"><b>tool fg</b> #5A626F</span>
+            <span class="chip"><b>status</b> same gray (no color)</span>
           </div>
         </div>
       </div>
