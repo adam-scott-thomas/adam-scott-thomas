@@ -50,11 +50,17 @@
     --claude-border:#e35345;
     --claude-glow:  rgba(192,57,43,0.32);
 
-    /* CODEX — white, intentionally gaudy magenta border */
+    /* CODEX — white, sober graphite border */
     --codex-bg:     #ffffff;
     --codex-fg:     #0b0d11;
-    --codex-border: #ff2dcd;
-    --codex-glow:   rgba(255,45,205,0.45);
+    --codex-border: #2a3140;
+    --codex-glow:   rgba(11,13,17,0.18);
+
+    /* Tool calls — neutral graphite, hueless on purpose */
+    --tool-bg:      #161a22;
+    --tool-border:  #2a3140;
+    --tool-fg:      #7d8794;
+    --tool-name:    #a8b3c4;
 
     /* GROK — purple */
     --grok-bg:      #6D28D9;
@@ -345,13 +351,39 @@
     border-style: dashed;
   }
 
-  /* Codex extra glow because it's intentionally gaudy */
+  /* Codex — clean white card, no neon */
   .b-codex {
-    border-width: 2px;
+    border-width: 1px;
     box-shadow:
-      0 0 0 1px rgba(255,45,205,0.55) inset,
-      0 8px 28px -10px var(--codex-glow);
+      0 1px 0 rgba(0,0,0,0.05) inset,
+      0 6px 18px -10px var(--codex-glow);
   }
+
+  /* Tool call — chrome around speech, not a voice */
+  .toolcall {
+    margin: 4px 0 0 38px;
+    background: var(--tool-bg);
+    border: 1px solid var(--tool-border);
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-family: ui-monospace, "JetBrains Mono", "Fira Code", "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--tool-fg);
+    line-height: 1.5;
+    max-width: min(78%, 720px);
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .toolcall .name {
+    color: var(--tool-name);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .toolcall .arrow { color: #4d5666; padding: 0 6px; }
+  .toolcall .arg   { color: #98a2b3; }
+  .toolcall .ok    { color: #6ee7b7; }
+  .toolcall .err   { color: #fca5a5; }
+  .row.right .toolcall { margin: 4px 38px 0 0; }
 
   /* Avatar tinting reuses bubble vars */
   .a-adam    { background: var(--adam-bg);    color: var(--adam-fg);    border-color: var(--adam-border); }
@@ -437,10 +469,11 @@
           <li><b>CLAUDE</b> — red (#C0392B), white text</li>
           <li><b>CLAUDE-CODE</b> — orange (#D9651F), white text</li>
           <li><b>CLAUDE-BROWSER</b> — yellow (#F5C518), <i>black text</i></li>
-          <li><b>CODEX</b> — white (#FFFFFF) + magenta border, black text</li>
+          <li><b>CODEX</b> — white (#FFFFFF) + graphite border, black text</li>
           <li><b>GROK</b> — purple (#6D28D9), white text</li>
           <li><b>GEMINI</b> — pink (#DB2777), white text</li>
           <li><b>SYSTEM</b> — slate gray (#2B313C), light gray text, dashed</li>
+          <li><b>Tool calls</b> — graphite (#161A22), no hue; chrome around speech, never a voice</li>
         </ul>
       </div>
       <div>
@@ -705,15 +738,40 @@
           <div class="bubble b-codex">
             <div class="head">
               <span class="speaker">CODEX</span>
-              <span class="role">model · audit</span>
+              <span class="role">model · review</span>
               <span class="ts">09:43:38</span>
             </div>
-            <div class="body">Concern with GPT's plan: <code>hash</code> as tiebreaker is non-deterministic across reruns if input ordering varies. Use <code>(ts, source_id, ingest_seq)</code>. Concern with CLAUDE-CODE's plan: 200 LOC is optimistic — EVTX alone is 600 LOC of XML pain.</div>
+            <div class="body">Both shapes work. Pick <code>(ts, source_id, ingest_seq)</code> as the tiebreak — it's deterministic across replays in a way <code>hash</code> isn't. Otherwise GPT's record + CLAUDE-CODE's scaffold compose cleanly.</div>
           </div>
           <div class="spec">
             <span class="chip"><b>bg</b> #FFFFFF</span>
             <span class="chip"><b>fg</b> #0B0D11</span>
-            <span class="chip"><b>border</b> #FF2DCD (gaudy)</span>
+            <span class="chip"><b>border</b> #2A3140</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool call example (under CLAUDE-CODE's bubble would be more natural, but show it standalone) -->
+      <div class="row">
+        <div class="avatar a-code" aria-hidden="true">CC</div>
+        <div>
+          <div class="bubble b-code">
+            <div class="head">
+              <span class="speaker">CLAUDE-CODE</span>
+              <span class="role">agent · CLI</span>
+              <span class="ts">09:44:06</span>
+            </div>
+            <div class="body">Scaffolding now.</div>
+          </div>
+          <div class="toolcall"><span class="name">Bash</span><span class="arrow">→</span><span class="arg">mkdir -p src/parsers && touch src/parsers/{syslog,journal,evtx}.ts</span><span class="arrow">  </span><span class="ok">✓ 0.04s</span></div>
+          <div class="toolcall"><span class="name">Write</span><span class="arrow">→</span><span class="arg">src/merge.ts</span><span class="arrow">  </span><span class="ok">✓ 1.2 KB</span></div>
+          <div class="toolcall"><span class="name">Bash</span><span class="arrow">→</span><span class="arg">npm test -- merge.test.ts</span><span class="arrow">  </span><span class="err">✗ 1 failed (TZ offset)</span></div>
+          <div class="spec">
+            <span class="chip"><b>tool bg</b> #161A22</span>
+            <span class="chip"><b>tool fg</b> #7D8794</span>
+            <span class="chip"><b>name</b> #A8B3C4</span>
+            <span class="chip"><b>ok</b> #6EE7B7</span>
+            <span class="chip"><b>err</b> #FCA5A5</span>
           </div>
         </div>
       </div>
