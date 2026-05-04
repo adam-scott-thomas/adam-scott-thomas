@@ -484,6 +484,7 @@
           <li><b>Stick to one bg per speaker</b>; tint avatars + glow with the same hue, never re-skin the bubble</li>
           <li><b>Border = bg lightened ~12%</b> for shape definition without noise</li>
           <li><b>Glow = bg @ 30–35% alpha</b>; under 40% to stay calm at small sizes</li>
+          <li><b>Mark model + version in the role label</b> (e.g. <code>opus-4.7</code>, <code>gpt-5.2-codex</code>) — speaker name says <i>who</i>, role says <i>what brain</i></li>
         </ul>
       </div>
       <div class="danger">
@@ -678,7 +679,7 @@
           <div class="bubble b-claude">
             <div class="head">
               <span class="speaker">CLAUDE</span>
-              <span class="role">model · sonnet-4.6</span>
+              <span class="role">model · opus-4.7</span>
               <span class="ts">09:42:58</span>
             </div>
             <div class="body">Treat unification as a parsing problem, not a normalization problem. Each format gets a typed parser; the unified type is a discriminated union, not a flattened row. You'll regret the flatten the first time someone asks "why did this field disappear."</div>
@@ -698,7 +699,7 @@
           <div class="bubble b-code">
             <div class="head">
               <span class="speaker">CLAUDE-CODE</span>
-              <span class="role">agent · CLI</span>
+              <span class="role">agent · opus-4.7</span>
               <span class="ts">09:43:11</span>
             </div>
             <div class="body">I'd scaffold it as <code>parsers/{syslog,journal,evtx}.ts</code> exporting <code>parse(): Event[]</code>, then a <code>merge.ts</code> that takes <code>Event[][]</code> and stable-sorts by <code>(ts, source, seq)</code>. ~200 LOC end to end. Tests first; the bug is always in the timezone handling.</div>
@@ -718,7 +719,7 @@
           <div class="bubble b-browser">
             <div class="head">
               <span class="speaker">CLAUDE-BROWSER</span>
-              <span class="role">agent · web</span>
+              <span class="role">agent · sonnet-4.6</span>
               <span class="ts">09:43:24</span>
             </div>
             <div class="body">Pulled three reference schemas: ECS (Elastic), OCSF (AWS/Splunk), CEF (ArcSight). OCSF is closest to what you described — borrow its <code>activity_id</code> + <code>severity_id</code> enums and stop reinventing the taxonomy.</div>
@@ -738,7 +739,7 @@
           <div class="bubble b-codex">
             <div class="head">
               <span class="speaker">CODEX</span>
-              <span class="role">model · review</span>
+              <span class="role">model · gpt-5.2-codex</span>
               <span class="ts">09:43:38</span>
             </div>
             <div class="body">Both shapes work. Pick <code>(ts, source_id, ingest_seq)</code> as the tiebreak — it's deterministic across replays in a way <code>hash</code> isn't. Otherwise GPT's record + CLAUDE-CODE's scaffold compose cleanly.</div>
@@ -758,7 +759,7 @@
           <div class="bubble b-code">
             <div class="head">
               <span class="speaker">CLAUDE-CODE</span>
-              <span class="role">agent · CLI</span>
+              <span class="role">agent · opus-4.7</span>
               <span class="ts">09:44:06</span>
             </div>
             <div class="body">Scaffolding now.</div>
